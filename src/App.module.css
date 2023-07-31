@@ -1,7 +1,6 @@
 .board {
   display: inline-block;
   margin: 20px;
-  border: 1px solid #333;
 }
 
 .row {
@@ -16,11 +15,32 @@
   border: 1px solid #ccc;
   cursor: pointer;
   /* Добавьте следующее свойство, чтобы установить фиксированную ширину ячейки */
-  min-width: 80px;
+  width: 100px;
+  height: 100px;
 }
 
 .winner {
   font-size: 20px;
   font-weight: bold;
   margin-top: 10px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.newGame {
+  padding: 10px 20px 10px 20px;
+  background-color: black;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.status {
+  margin-top: 16px;
+  font-size: 1.2rem;
 }

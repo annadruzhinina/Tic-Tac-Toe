@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import FieldCell from "./FieldCell";
+import styles from "../App.module.css";
+import Status from "./Status";
 
-const GameBoard = () => {
+const GameBoard = ({ name }) => {
   const initialBoard = Array(9).fill(null);
   const [board, setBoard] = useState(initialBoard);
   const [isXNext, setIsXNext] = useState(true);
@@ -33,32 +36,42 @@ const GameBoard = () => {
 
   return (
     <>
-      <div>{winner && <div className="winner">Winner: {winner}</div>}</div>
+      <Status
+        currentPlayer={isXNext ? "X" : "O"}
+        winner={winner}
+        isDraw={board.every((cell) => cell !== null) && !winner}
+        onRestart={handleRestart}
+      />
+      <div>
+        <h2>Welcome, {name}!</h2>
+        {/* {winner && <div className={styles.winner}>Winner: {winner}</div>} */}
+      </div>
 
-      <div className="board">
-        <div className="row">
+      <div className={styles.board}>
+        <div className={styles.row}>
           {renderCell(0)}
           {renderCell(1)}
           {renderCell(2)}
         </div>
-        <div className="row">
+        <div className={styles.row}>
           {renderCell(3)}
           {renderCell(4)}
           {renderCell(5)}
         </div>
-        <div className="row">
+        <div className={styles.row}>
           {renderCell(6)}
           {renderCell(7)}
           {renderCell(8)}
         </div>
-
-        <button className="new-game" onClick={handleRestart}>
-          Начать заново
-        </button>
       </div>
     </>
   );
 };
+
+GameBoard.propTypes = {
+  name: PropTypes.string,
+};
+
 function calculateWinner(board) {
   const winPatterns = [
     [0, 1, 2],
